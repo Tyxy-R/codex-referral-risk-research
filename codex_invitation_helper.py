@@ -16,10 +16,10 @@ Codex Referral Invitation Helper (协议邀请工具脚本)
 
 使用示例：
   # 从默认 ~/.codex/auth.json 读取母号，向 5 个生成的随机邮箱发送邀请并走代理
-  python codex_invitation_helper.py --generate 5 --domain dfhdg.store --proxy http://127.0.0.1:7890
+  python codex_invitation_helper.py --generate 5 --domain example.com --proxy http://127.0.0.1:7890
 
   # 指定特定的邮箱进行邀请
-  python codex_invitation_helper.py --emails test1@dfhdg.store,test2@dfhdg.store --auth-file .\codex_login_auth.json
+  python codex_invitation_helper.py --emails test1@example.com,test2@example.com --auth-file .\codex_login_auth.json
 """
 
 import os
@@ -212,7 +212,7 @@ def main() -> int:
     group.add_argument("--emails", help="以英文逗号分隔的特定受邀邮箱列表")
     group.add_argument("--generate", type=int, help="自动随机生成指定数量的受邀邮箱")
     
-    parser.add_argument("--domain", default="dfhdg.store", help="当随机生成邮箱时的域名 [默认: dfhdg.store]")
+    parser.add_argument("--domain", default="example.com", help="当随机生成邮箱时的域名 [默认: example.com]")
     parser.add_argument("--prefix-len", type=int, default=20, help="随机邮箱前缀长度 [默认: 20]")
     
     # 代理与输出

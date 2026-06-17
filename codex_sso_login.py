@@ -7,7 +7,7 @@ Codex 全自动登录 & Token 截获脚本
 
 用法：
   # 单个账号登录
-  python codex_sso_login.py --email xxx@dfhdg.store --password P@ssw0rd --out ./accounts/xxx.json
+  python codex_sso_login.py --email xxx@example.com --password P@ssw0rd --out ./accounts/xxx.json
 
   # 批量：从 CSV 文件读取（格式：email,password）
   python codex_sso_login.py --csv accounts.csv --out-dir ./accounts

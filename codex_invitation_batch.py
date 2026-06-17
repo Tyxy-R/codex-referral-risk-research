@@ -6,7 +6,7 @@ Codex 批量并行邀请调度器
 扫描一个目录下所有母号 auth.json，每个母号邀请 5 个邮箱，并发执行。
 
 用法：
-  python codex_invitation_batch.py --auth-dir ./accounts --domain dfhdg.store --per-account 5
+  python codex_invitation_batch.py --auth-dir ./accounts --domain example.com --per-account 5
 
   # 并发数控制
   python codex_invitation_batch.py --auth-dir ./accounts --concurrency 3
@@ -132,7 +132,7 @@ def process_account(
 def main() -> int:
     parser = argparse.ArgumentParser(description="Codex 批量并行邀请调度器")
     parser.add_argument("--auth-dir", required=True, help="母号凭证目录（每个 .json 文件是一个母号）")
-    parser.add_argument("--domain", default="dfhdg.store", help="随机邮箱域名 [默认: dfhdg.store]")
+    parser.add_argument("--domain", default="example.com", help="随机邮箱域名 [默认: example.com]")
     parser.add_argument("--per-account", type=int, default=5, help="每个母号邀请邮箱数 [默认: 5]")
     parser.add_argument("--concurrency", type=int, default=5, help="并发母号数 [默认: 5]")
     parser.add_argument("--proxy", help="HTTP 代理 URL")

@@ -10,7 +10,7 @@ Codex 协议登录脚本（纯 HTTP，不需要浏览器）
 
 用法：
   # 单个账号
-  python3 codex_protocol_login.py --email xxx@dfhdg.store --password P@ss --out ./accounts/xxx.json
+  python3 codex_protocol_login.py --email xxx@example.com --password P@ss --out ./accounts/xxx.json
 
   # 批量（CSV: email,password）
   python3 codex_protocol_login.py --csv accounts.csv --out-dir ./accounts

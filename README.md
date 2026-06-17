@@ -81,7 +81,7 @@ Log in seed accounts:
 .venv/bin/python codex_protocol_login.py \
   --csv runs/example/seed_accounts.csv \
   --out-dir runs/example/seeds \
-  --proxy http://127.0.0.1:7897 \
+  --proxy http://127.0.0.1:PORT \
   --concurrency 10 \
   --retries 2 \
   --skip-existing
@@ -95,7 +95,7 @@ Probe and send referral invites from seed accounts:
   --domain example.com \
   --per-account 5 \
   --concurrency 10 \
-  --proxy http://127.0.0.1:7897 \
+  --proxy http://127.0.0.1:PORT \
   --save-back \
   --out runs/example/invite_results.json
 ```
@@ -113,7 +113,7 @@ Log in invited accounts:
 .venv/bin/python codex_protocol_login.py \
   --csv runs/example/invitee_accounts.csv \
   --out-dir runs/example/invitees \
-  --proxy http://127.0.0.1:7897 \
+  --proxy http://127.0.0.1:PORT \
   --concurrency 10 \
   --retries 2 \
   --skip-existing
@@ -125,7 +125,7 @@ Run activation telemetry simulation:
 .venv/bin/python codex_activation_batch.py \
   --auth-dir runs/example/invitees \
   --concurrency 10 \
-  --proxy http://127.0.0.1:7897 \
+  --proxy http://127.0.0.1:PORT \
   --save-back
 ```
 
