@@ -1,0 +1,16 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0
+    command:
+      - start-dev
+      - --http-port=8080
+      - --hostname=${KEYCLOAK_HOSTNAME:-http://localhost:8080}
+    env_file:
+      - .env
+    ports:
+      - "${KEYCLOAK_HTTP_PORT:-8080}:8080"
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+
+volumes:
+  keycloak-data:
