@@ -4,10 +4,6 @@ This repository contains research tooling for studying SSO-based workspace refer
 
 The project is intended to help security and risk teams reproduce referral-flow edge cases, measure concurrency behavior, and evaluate where abuse-resistant controls should be enforced.
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Tyxy-R/chatgpt-sso-keycloak,Tyxy-R/codex-referral-risk-research&type=Date)](https://www.star-history.com/#Tyxy-R/chatgpt-sso-keycloak&Tyxy-R/codex-referral-risk-research&Date)
-
 ## Companion Repository
 
 This repository is companion tooling for:
@@ -150,3 +146,7 @@ Run activation telemetry simulation:
 ## License
 
 MIT License. See [LICENSE](LICENSE).
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Tyxy-R/codex-referral-risk-research&type=Date)](https://www.star-history.com/#Tyxy-R/codex-referral-risk-research&Date)
