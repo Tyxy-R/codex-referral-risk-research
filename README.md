@@ -4,6 +4,14 @@ This repository contains research tooling for studying SSO-based workspace refer
 
 The project is intended to help security and risk teams reproduce referral-flow edge cases, measure concurrency behavior, and evaluate where abuse-resistant controls should be enforced.
 
+## Companion Repository
+
+This repository is companion tooling for:
+
+https://github.com/Tyxy-R/chatgpt-sso-keycloak
+
+Use this project after the Keycloak SAML IdP is deployed and the target email domain is verified in the OpenAI Workspace.
+
 ## Research Focus
 
 - SSO account creation paths in OAuth-based product onboarding.
