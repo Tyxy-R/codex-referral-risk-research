@@ -8,9 +8,6 @@ Codex 批量并行邀请调度器
 用法：
   python codex_invitation_batch.py --auth-dir ./accounts --domain example.com --per-account 5
 
-  # 并发数控制
-  python codex_invitation_batch.py --auth-dir ./accounts --concurrency 3
-
   # dry-run
   python codex_invitation_batch.py --auth-dir ./accounts --dry-run
 """
@@ -134,7 +131,6 @@ def main() -> int:
     parser.add_argument("--auth-dir", required=True, help="母号凭证目录（每个 .json 文件是一个母号）")
     parser.add_argument("--domain", default="example.com", help="随机邮箱域名 [默认: example.com]")
     parser.add_argument("--per-account", type=int, default=5, help="每个母号邀请邮箱数 [默认: 5]")
-    parser.add_argument("--concurrency", type=int, default=5, help="并发母号数 [默认: 5]")
     parser.add_argument("--proxy", help="HTTP 代理 URL")
     parser.add_argument("--out", help="结果输出 JSON 文件路径")
     parser.add_argument("--dry-run", action="store_true", help="只预检，不实际发送")
@@ -143,9 +139,6 @@ def main() -> int:
 
     if args.per_account <= 0:
         print(f"[!] --per-account 必须大于 0，当前: {args.per_account}")
-        return 1
-    if args.concurrency <= 0:
-        print(f"[!] --concurrency 必须大于 0，当前: {args.concurrency}")
         return 1
 
     try:
@@ -168,7 +161,8 @@ def main() -> int:
     skipped = len(all_json_files) - len(auth_files)
     if skipped:
         log(f"已跳过 {skipped} 个非账号 JSON 文件")
-    log(f"扫描到 {len(auth_files)} 个母号，每个邀请 {args.per_account} 个邮箱，并发数 {args.concurrency}")
+    max_workers = len(auth_files)
+    log(f"扫描到 {len(auth_files)} 个母号，每个邀请 {args.per_account} 个邮箱，并发数 {max_workers}")
     if args.dry_run:
         log("dry-run 模式，不会实际发送邀请")
 
@@ -176,7 +170,6 @@ def main() -> int:
     total_emails = 0
     success_accounts = 0
 
-    max_workers = min(args.concurrency, len(auth_files))
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         futures = {
             pool.submit(process_account, fp, args.domain, args.per_account, args.proxy, args.dry_run, args.save_back): fp

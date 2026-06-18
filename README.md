@@ -94,7 +94,6 @@ Probe and send referral invites from seed accounts:
   --auth-dir runs/example/seeds \
   --domain example.com \
   --per-account 5 \
-  --concurrency 10 \
   --proxy http://127.0.0.1:PORT \
   --save-back \
   --out runs/example/invite_results.json
@@ -124,7 +123,6 @@ Run activation telemetry simulation:
 ```bash
 .venv/bin/python codex_activation_batch.py \
   --auth-dir runs/example/invitees \
-  --concurrency 10 \
   --proxy http://127.0.0.1:PORT \
   --save-back
 ```

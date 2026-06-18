@@ -6,7 +6,7 @@ Codex 批量并行激活调度器
 扫描一个目录下所有子号 auth.json，并发执行 protocol 激活。
 
 用法：
-  python codex_activation_batch.py --auth-dir ./accounts --concurrency 5
+  python codex_activation_batch.py --auth-dir ./accounts
 
   # 配合代理
   python codex_activation_batch.py --auth-dir ./accounts --proxy http://127.0.0.1:7890
@@ -94,14 +94,9 @@ def process_account(auth_path: Path, proxy: str = None, save_back: bool = False)
 def main() -> int:
     parser = argparse.ArgumentParser(description="Codex 批量并行激活调度器")
     parser.add_argument("--auth-dir", required=True, help="子号凭证目录")
-    parser.add_argument("--concurrency", type=int, default=5, help="并发数 [默认: 5]")
     parser.add_argument("--proxy", help="HTTP 代理 URL")
     parser.add_argument("--save-back", action="store_true", help="刷新 token 后写回原文件")
     args = parser.parse_args()
-
-    if args.concurrency <= 0:
-        print(f"[!] --concurrency 必须大于 0，当前: {args.concurrency}")
-        return 1
 
     try:
         import urllib3
@@ -123,12 +118,12 @@ def main() -> int:
     skipped = len(all_json_files) - len(auth_files)
     if skipped:
         log(f"已跳过 {skipped} 个非账号 JSON 文件")
-    log(f"扫描到 {len(auth_files)} 个子号，并发数 {args.concurrency}")
+    max_workers = len(auth_files)
+    log(f"扫描到 {len(auth_files)} 个子号，并发数 {max_workers}")
 
     results = []
     success_count = 0
 
-    max_workers = min(args.concurrency, len(auth_files))
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         futures = {
             pool.submit(process_account, fp, args.proxy, args.save_back): fp
